@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4">{{user}}'s Favourites</h1>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <a href="{% url 'books:list' %}" class="btn btn-md btn-primary">Go to Books</a>
+            <a href="{% url 'accounts:profile' username=user %}" class="btn btn-md btn-secondary">Back to Profile</a>
+        </div>
+    </div>
+    <br><hr/><br>
+    <div class="row">
+        <div class="col-12">
+            {% for f in favourites %}
+                <div class="row">
+                    <div class="book-cover-comments">
+                        <img class="cover-image" src="{% static '' %}img/{{f.name.lower}}.jpg" />
+                    </div>
+                    <div class="col-7">
+                        <p><strong>{{f.name}}</strong></p>
+                        <p>Author : {{f.writer}} | Publication : {{f.published}}</p>
+                        <p>Type : {{f.type}} | Series : {{f.series}}</p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                    <a href="{% url 'books:detail' id=f.bookname %}" class="btn btn-md btn-primary">Go to Book</a>
+                    <a href="{% url 'favourites:delete' id=f.id %}" class="btn btn-md btn-danger">Delete</a>
+                    </div>
+                </div>
+                <br>
+                <hr/>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

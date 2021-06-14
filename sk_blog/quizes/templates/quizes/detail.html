@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="display-4">{{ quiz.name }}</h1>
+                <p>{{quiz.description}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a href="{% url 'quizes:question' quizname=quiz.name %}" class="btn btn-md btn-primary">Add Question</a>
+                <a href="{% url 'quizes:list' %}" class="btn btn-md btn-secondary">Back To Quiz List</a>
+            </div>
+        </div>
+        <br><hr/>
+        {% for q in quiz.questions.all %}
+            <div class="row">
+                <div class="col-12">
+                    <p><strong>{{q.number}}. {{q.question}}</strong></p>
+                    <a href="{% url 'quizes:delete_question' quizname=quiz.name questionID=q.number %}"
+                       class="btn btn-sm btn-danger">Delete</a>
+                    <a href="{% url 'quizes:update_question' quizname=quiz.name questionID=q.number %}"
+                       class="btn btn-sm btn-secondary">Update</a>
+                </div>
+            </div>
+            {% for a in q.answers.all %}
+                <div class="row">
+                    <div class="col-12">
+                        <p>{{a.number}}. {{a.answer}} - {{a.correct}}</p>
+                        <a href="{% url 'quizes:delete_answer' quizname=quiz.name questionID=q.number answerID=a.number%}"
+                           class="btn btn-sm btn-danger">Delete</a>
+                        <a href="{% url 'quizes:update_answer' quizname=quiz.name questionID=q.number answerID=a.number%}"
+                           class="btn btn-sm btn-secondary">Update</a>
+                    </div>
+                </div>
+            {% endfor %}
+            <br>
+            <div class="row">
+                <div class="col-12">
+                    <a href="{% url 'quizes:answer' quizname=quiz.name questionID=q.number %}"
+                       class="btn btn-md btn-primary">Add Answer</a>
+                </div>
+            </div>
+            <br><hr/>
+        {% endfor %}
+        <br>
+    </div>
+{% endblock content %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+    <div class="container px-5">
+        <br>
+        <div class="row mb-3">
+            <div class="col-xs-1 text-center">
+                <h1 class="display-4">Quiz List</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="image-container">
+                <img class="home-image" src="{% static '' %}img/sk_stories.png" />
+            </div>
+        </div>
+        <div class="row">
+            {% if request.user.is_superuser %}
+                <div class="text-center">
+                    <a href="{% url 'quizes:create'%}" class="btn btn-md btn-primary">Add New Quiz</a>
+                </div>
+            {% endif %}
+        </div>
+        <br><hr>
+        <div class="row" id="quiz-question-row">
+            <div class="col-12">
+                {% for q in quizes %}
+                    <br>
+                    <div class="row">
+                        <div class="book-detail">
+                            <div class="col-10">
+                                <h3>{{q.name}}</h3>
+                                <p>{{q.description}}</p>
+                                 <a href="{% url 'quizes:play' quizname=q.name %}"
+                                    class="btn btn-md btn-success">Try Quiz</a>
+                                {% if request.user.is_superuser %}
+                                    <a href="{% url 'quizes:detail' quizname=q.name %}"
+                                    class="btn btn-md btn-primary">Details</a>
+                                    <a href="{% url 'quizes:update_quiz' quizname=q.name %}"
+                                    class="btn btn-md btn-secondary">Update</a>
+                                    <a href="{% url 'quizes:delete_quiz' quizname=q.name %}"
+                                    class="btn btn-md btn-danger">Delete</a>
+                                {% endif %}
+                            </div>
+                             <div class="book-cover-big">
+                                <img class="quiz-list-image" src="{% static '' %}img/{{q.name.lower}}.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                    <br><hr/>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

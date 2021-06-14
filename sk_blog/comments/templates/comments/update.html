@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container px-5">
+        <div class="row">
+            <h1 class="display-4">Update Comment for Book {{book.title}}</h1>
+        </div>
+        <div class="row">
+            <h4 class="text-danger">{{ errorMsg }}</h4>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="content">Comment</label>
+                        <textarea id="content" name="content" rows="8" class="form-control">{{comment.content}}</textarea>
+                    </div>
+                    <br>
+                    <input type="submit" value="Update Comment" class="btn btn-md btn-primary mr-2"/>
+                    <a href="{% url 'books:detail' id=book.id %}" class="btn btn-md btn-danger">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

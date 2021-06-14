@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: 'ZCOOL XiaoWei', serif;
+}
+
+hr{
+    margin:0;
+}
+
+.italic{
+    font-family: 'Trocchi', serif;
+}
+
+.table td {
+    vertical-align:middle !important;
+    text-align: center !important;
+    align-items:center !important;
+}
+
+.table th {
+    vertical-align: middle !important;
+    text-align: center !important;
+    align-items: center !important;
+}
+
+p, textarea{
+    white-space: pre-wrap !important;
+}
+
+/* navbar */
+.navbar-logo{
+    margin:auto;
+    display:flex;
+    width:auto;
+    padding: 0px;
+    margin:0px 10px 0px 10px;
+    align-items:center;
+    border:solid 3px white;
+    border-radius:50%;
+}
+
+.navbar-brand{
+    width:50px;
+    height:50px;
+    padding:0px 0px 0px 0px;
+    margin:0px 3.5px 6px 1px;
+    text-align:center;
+    font-size:37px
+}
+
+/* static/home */
+.image-container, .quote-deco{
+    margin:auto;
+    display:flex;
+    width:auto;
+    padding: 10px;
+    align-items:center;
+}
+
+.quote-deco{
+    height:150px;
+    background-image:url('quote.png');
+    background-size:15%;
+    background-repeat:no-repeat;
+    background-position:right;
+}
+
+.home-image{
+    border-radius:50%;
+    width:250px;
+    height:250px;
+    object-fit: cover;
+}
+
+.quote{
+    text-align:center;
+    width:100%;
+}
+
+/* static/about */
+
+.sk-img{
+    margin:0px 20px 30px 20px;
+}
+
+.collapsible{
+    cursor:pointer;
+}
+
+.active, .collapsible:hover{
+    color: dimgray;
+}
+
+.collapsible-content{
+    overflow: hidden;
+    display:none;
+    margin: 20px 0px 30px 0px;
+}
+
+#sk-signature{
+    margin: 10px 0px 0px 0px;
+    width:250px;
+    height:auto;
+}
+
+/* static/kingverse */
+
+#kingverse-img{
+    width:100%;
+    height:100%;
+    cursor:pointer;
+}
+
+#kingverse-refs-img{
+    width:100%;
+    height:100%;
+    cursor:pointer;
+}
+
+.kingverse-image-container{
+    position:relative;
+    margin:auto;
+    width:auto;
+    padding: 0px;
+    align-items:center;
+}
+
+.img-magnifier-glass {
+  position: absolute;
+  border: 3px solid #000;
+  border-radius: 50%;
+  cursor: none;
+  width: 250px;
+  height: 250px;
+}
+
+/* books/list */
+.book-info{
+    padding-left:20px;
+}
+
+.book-cover-small{
+    width:120px;
+    height:auto;
+}
+
+.cover-image{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.header-th{
+    cursor:pointer;
+}
+
+.book-list-icon{
+    width:150px;
+    height:150px;
+    color:white;
+    text-align:center;
+    font-size:20px;
+    text-shadow: 0 0 20px white;
+    margin:20px 20px 10px 20px;
+    background-color:black;
+    padding-top:25px;
+    line-height:1;
+    box-shadow: 0 0 10px red, inset 0 0 10px red;
+}
+
+.book-list-icon:hover{
+    box-shadow: 0 0 10px white, inset 0 0 10px white;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+
+.book-list-title{
+    font-weight:bold;
+    text-decoration: none;
+    color: black;
+    text-shadow: 0 0 20px #ff0000;
+}
+
+.book-list-title:hover{
+    color:black;
+    text-shadow: 0 0 20px #00ff00;
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;
+}
+
+:-ms-input-placeholder {
+   text-align: center;
+}
+
+/* books/detail */
+.book-detail{
+    align-items:center;
+    display:flex;
+    padding: 10px;
+}
+
+.book-cover-big{
+    width:150px;
+    height:auto;
+}
+
+.book-quote{
+    font-style: italic;
+}
+
+/* quizes/play */
+.hidden{
+    display:none;
+}
+
+#question-quiz, .success, .error{
+    font-weight:bold;
+}
+
+.success{
+    color:green;
+}
+
+.error{
+    color:red;
+}
+
+.quiz-list-image{
+    border-radius:50%;
+    width:150px;
+    height:150px;
+    object-fit: cover;
+}
+
+.answer_label, #question-quiz{
+    font-size: 18px;
+}
+
+/* profile */
+.quiz-results-icon{
+    margin: 0px 0px 0px 20px;
+}
+
+.book-cover-comments{
+    width:120px;
+    height:auto;
+}
+
+@media all and (max-width: 1040px) {
+    .sk-img{
+        width:160px;
+        height:160px;
+    }
+}
+
+@media all and (max-width: 780px) {
+    .sk-img{
+        width:120px;
+        height:120px;
+    }
+    .book-cover-small{
+        width:70px;
+    }
+    .book-list-icon{
+        width:100px;
+        height:100px;
+        font-size:12px;
+        padding-top:15px;
+    }
+}
+
+@media all and (max-width: 860px) {
+    #quiz-play-image{
+        width:160px;
+        height:160px;
+    }
+}
+
+@media all and (max-width: 680px) {
+    .table td{
+        font-size:13px !important;
+    }
+    .table th{
+        font-size:13px !important;
+    }
+    .table tr{
+        font-size:13px !important;
+    }
+}
+
+@media all and (max-width: 590px) {
+    #quiz-play-image{
+        width:120px;
+        height:120px;
+    }
+}
+
+@media all and (max-width: 550px) {
+    .book-cover-small{
+        display:none;
+    }
+    .book-list-icon{
+        width:90px;
+        height:90px;
+        font-size:11px;
+        padding-top:12px;
+    }
+}
+
+@media all and (max-width: 620px) {
+    .quiz-list-image{
+        width: 100px;
+        height: 100px;
+    }
+}
+
+
+@media (max-width: 768px) {
+  html, body {
+    height:100vh;
+  }
+}

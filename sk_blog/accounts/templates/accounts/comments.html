@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4">{{user}}'s Comments</h1>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <a href="{% url 'books:list' %}" class="btn btn-md btn-primary">Go to Books</a>
+            <a href="{% url 'accounts:profile' username=user %}" class="btn btn-md btn-secondary">Back to Profile</a>
+        </div>
+    </div>
+    <br><hr/><br>
+    <div class="row">
+        <div class="col-12">
+            {% for c in comments %}
+                <div class="row">
+                    <div class="book-cover-comments">
+                        <img class="cover-image" src="{% static '' %}img/{{c.book.lower}}.jpg" />
+                    </div>
+                    <div class="col-7">
+                        <p><strong>Comment on book {{c.book}}</strong></p>
+                        <p>Created : {{c.created}} | Updated : {{c.updated}}</p>
+                        <p>Your comment :<br>{{c.content}}</p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <a href="{% url 'comments:update' id=c.id %}" class="btn btn-md btn-secondary">Edit</a>
+                        <a href="{% url 'comments:delete' id=c.id %}" class="btn btn-md btn-danger">Delete</a>
+                    </div>
+                </div>
+                <br>
+                <hr/>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

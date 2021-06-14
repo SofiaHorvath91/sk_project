@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4">{{user}}'s Feedbacks</h1>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <a href="{% url 'feedbacks:create' %}" class="btn btn-md btn-primary">New Feedback</a>
+            <a href="{% url 'accounts:profile' username=user %}" class="btn btn-md btn-secondary">Back to Profile</a>
+        </div>
+    </div>
+    <br><hr/><br>
+    <div class="row">
+        <div class="col-12">
+            {% for f in feedbacks %}
+                <div class="row">
+                    <div class="col-12">
+                        <p><strong>Your rating : {{f.rating}} stars - {{f.description}}</strong></p>
+                        <p>Your feedback :<br>{{f.content}}</p>
+                        <p>Created : {{f.created}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <a href="{% url 'feedbacks:delete' id=f.id %}" class="btn btn-md btn-danger">Delete</a>
+                    </div>
+                </div>
+                <br><hr/><br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-xs-1 text-center">
+            <h1 class="display-4">Welcome to the world of Stephen King!</h1>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="image-container">
+            <img class="home-image" src="{% static '' %}img/sk{{picNum}}.jpg" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1 text-center">
+            <div class="quote-deco">
+                <h3 class="quote">{{quote}}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

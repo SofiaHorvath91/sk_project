@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+    <div class="container">
+        <div class="row">
+            <div class="book-detail">
+                <div class="col-10">
+                    <h1 class="display-4">{{books.title}}</h1>
+                    <br>
+                    <p>Written by : {{books.writer}}</p>
+                    <p>Publication : {{books.published}} | Type : {{books.type}}</p>
+                    <p>Series : {{books.series}}</p>
+                </div>
+                <div class="book-cover-big">
+                    <img class="cover-image" src="{% static '' %}img/{{books.image}}.jpg" />
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <p><strong>Summary :</strong></p>
+                <p>{{books.content}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p><strong>Fun Fact :</strong></p>
+                <p>{{books.funfact}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p><strong>Quotes :</strong></p>
+                <p class="book-quote">{{books.quote1}}</p>
+                <p class="book-quote">{{books.quote2}}</p>
+                <p class="book-quote">{{books.quote3}}</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <a href="{% url 'comments:create' id=books.id %}" class="btn btn-md btn-primary">Comment</a>
+                <a href="{% url 'favourites:create' id=books.id %}" class="btn btn-md btn-success">Add To Favourites</a>
+                <a href="{% url 'books:list' %}" class="btn btn-md btn-dark">Back to Books</a>
+                {% if request.user.is_superuser %}
+                    <a href="{% url 'books:update' id=books.id %}" class="btn btn-md btn-secondary">Edit</a>
+                    <a href="{% url 'books:delete' id=books.id %}" class="btn btn-md btn-danger">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                    <hr/>
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>Comments</h4>
+                        </div>
+                    </div>
+                    <hr/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                {% for c in comments %}
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>{{c.author}}</strong>'s comment on book <strong>{{c.book}}</strong></p>
+                            <p>{{c.content}}</p>
+                            <p>Created : {{c.created}} | Updated : {{c.updated}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            {% if request.user == c.author %}
+                                <a href="{% url 'comments:update' id=c.id %}" class="btn btn-md btn-secondary">Edit</a>
+                                <a href="{% url 'comments:delete' id=c.id %}" class="btn btn-md btn-danger">Delete</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr/>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

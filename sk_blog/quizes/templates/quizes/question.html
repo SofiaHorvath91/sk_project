@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container px-5">
+        <div class="row">
+            <h1 class="display-4">New Question for {{ quizname }}</h1>
+        </div>
+        <div class="row">
+            <h4 class="text-danger">{{ errorMsg }}</h4>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="number">Number</label>
+                        <input type="number" id="number" name="number" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="question">Question</label>
+                        <input type="text" id="question" name="question" class="form-control"/>
+                    </div>
+                    <br>
+                    <input type="submit" value="Add New Question" class="btn btn-md btn-primary mr-2"/>
+                    <a href="{% url 'quizes:detail' quizname=quizname %}" class="btn btn-md btn-danger">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

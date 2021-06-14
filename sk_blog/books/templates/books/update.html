@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container px-5">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="display-4">Update Book</h1>
+                <h4 class="text-danger">{{errorMsg}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form method="POST">
+                    {% csrf_token %}
+                     <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" class="form-control" value="{{book.title}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="writer">Writer</label>
+                        <input type="text" id="writer" name="writer" class="form-control" value="{{book.writer}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="published">Publication</label>
+                        <input type="date" id="published" name="published" class="form-control"
+                               value="{{book.published | date:'c'}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <select name="type" id="type" class="form-control" value="{{book.type}}">
+                            <option value="">--Select a type--</option>
+                            <option value="Novel">Novel</option>
+                            <option value="Non-fiction">Non-fiction</option>
+                            <option value="Collection">Collection</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="series">Series</label>
+                        <select name="series" id="series" class="form-control" value="{{book.series}}">
+                            <option value="Stand-alone(s)">Stand-alone(s)</option>
+                            <option value="Dark Tower">Dark Tower</option>
+                            <option value="Shining">Shining</option>
+                            <option value="Eclipse-books">Eclipse-books</option>
+                            <option value="Tak-books">Tak-books</option>
+                            <option value="Castle Rock">Castle Rock</option>
+                            <option value="Derry">Derry</option>
+                            <option value="Gwendy Peterson">Gwendy Peterson</option>
+                            <option value="Jack Sawyer">Jack Sawyer</option>
+                            <option value="Bill Hodges - trilogy">Bill Hodges - trilogy</option>
+                            <option value="Holly Gibney">Holly Gibney</option>s
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <textarea id="content" name="content" rows="8" class="form-control">{{book.content}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="quote1">Quote 1</label>
+                        <textarea id="quote1" name="quote1" rows="3" class="form-control">{{book.quote1}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="quote2">Quote 2</label>
+                        <textarea id="quote2" name="quote2" rows="3" class="form-control">{{book.quote2}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="quote3">Quote 3</label>
+                        <textarea id="quote3" name="quote3" rows="3" class="form-control">{{book.quote3}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="funfact">Fun Fact</label>
+                        <textarea id="funfact" name="funfact" rows="8" class="form-control">{{book.funfact}}</textarea>
+                    </div>
+                    <br>
+                    <input type="submit" value="Update Book" class="btn btn-md btn-primary"/>
+                    <a href="{% url 'books:detail' id=book.id %}" class="btn btn-md btn-danger">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

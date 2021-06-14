@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+    <div class="container px-5">
+        <br>
+        <div class="row">
+            <div class="col-xs-1 text-center">
+                <h1 class="display-4">Book List</h1>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="image-container">
+                <div class="home-image book-list-icon"><h1>{{countNovel}}</h1>NOVELS</div>
+                <div class="home-image book-list-icon"><h1>{{countCollection}}</h1>COLLECTIONS</div>
+                <div class="home-image book-list-icon"><h1>{{countNonFiction}}</h1>NON-FICTIONS</div>
+            </div>
+        </div>
+        <div class="image-container mb-2">
+            <input class="form-control" id="searchValue" type="text" placeholder="Search in book list..">
+        </div>
+        {% if request.user.is_superuser %}
+        <div class="text-center">
+            <br>
+            <a href="{% url 'books:create'%}" class="btn btn-md btn-primary">Add New Book</a>
+        </div>
+        {% endif %}
+        <br>
+        <table class="table" id="book-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="header-th" onclick="sortTable(1)">Title</th>
+                    <th class="header-th" onclick="sortTable(2)">Author(s)</th>
+                    <th class="header-th" onclick="sortTable(3)">Type</th>
+                    <th class="header-th" onclick="sortTable(4)">Series</th>
+                    <th class="header-th" onclick="sortTable(5)">Publication</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for b in books %}
+                <tr>
+                    <td>
+                        <div class="book-cover-small">
+                                <img class="cover-image" src="{% static '' %}img/{{b.image}}.jpg" />
+                        </div>
+                    </td>
+                    <td>
+                        <strong><a class="book-list-title" href="{% url 'books:detail' id=b.id %}">{{b.title}}</a></strong>
+                    </td>
+                    <td> {{b.writer}} </td>
+                    <td> {{b.type}} </td>
+                    <td> {{b.series}} </td>
+                    <td> {{b.published}} </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<script type="text/javascript" src="{% static 'js/js_booklist.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-1 text-center">
+            <h1 class="display-4">{{result.quiz}}</h1>
+        </div>
+    </div>
+    <hr/>
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-xs-1 text-center">
+                    <h1 class="display-4"><strong>Your result : {{result.result}} / {{result.maxpoint}}</strong></h1>
+                    <h2 class="display-6">{{result.comment}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="image-container">
+                    <img class="home-image" src="{% static '' %}img/quiz_result.jpg" />
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-xs-1 text-center">
+                    <h4 class="display-6">Here is a nice balloon for the try!</h4>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-1 text-center">
+                    <a href="{% url 'quizes:play' quizname=result.quiz %}"
+                    class="btn btn-lg btn-danger">Play Again</a>
+                    <a href="{% url 'quizes:list' %}"
+                    class="btn btn-lg btn-secondary">Quiz List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

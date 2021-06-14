@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-1 text-center">
+                <h1 class="display-4">{{quiz.name}}</h1>
+                <p>{{quiz.description}}</p>
+            </div>
+        </div>
+        <hr/>
+        <div class="row" id="quiz-image">
+            <div class="image-container">
+                <img class="home-image" src="{% static '' %}img/{{quiz_pic}}.jpg" />
+            </div>
+        </div>
+        <br>
+        <div class="row" id="start-quiz-div">
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <input type="submit" id='start-quiz-btn' class="btn btn-lg btn-danger" value="Start Quiz">
+            </div>
+        </div>
+        <div class="book-detail hidden" id="quiz-container">
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-12">
+                        <p id="question-quiz"></p>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-12">
+                        <input type="checkbox" name="answer_1" id="answer_1" class="answer">
+                        <label for="answer_1" id="answer1_label" class="answer_label"></label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input type="checkbox" name="answer_2" id="answer_2" class="answer">
+                        <label for="answer_2" id="answer2_label" class="answer_label"></label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input type="checkbox" name="answer_3" id="answer_3" class="answer">
+                        <label for="answer_3" id="answer3_label" class="answer_label"></label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input type="checkbox" name="answer_4" id="answer_4" class="answer">
+                        <label for="answer_4" id="answer4_label" class="answer_label"></label>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <input type="submit" id='check-btn' class="btn btn-lg btn-danger" value="Check Answer">
+                        <input type="submit" id='next-btn' class="btn btn-lg btn-secondary" value="Next Question">
+                        <form method="POST">
+                        {% csrf_token %}
+                            <div class="form-group hidden">
+                                <input type="number" id="result-maxpoint" name="result-maxpoint" class="form-control"/>
+                                <input type="number" id="result-result" name="result-result" class="form-control"/>
+                                <input type="text" id="result-comment" name="result-comment" class="form-control"/>
+                            </div>
+                            <input type="submit" id='end-btn' class="btn btn-lg btn-dark" value="Finish Quiz">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="book-cover-big">
+                <img class="home-image" id="quiz-play-image" src="{% static '' %}img/{{quiz_pic}}.jpg" />
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        window.quizJSON = {{quiz_json|safe}};
+    </script>
+    <script type="text/javascript" src="{% static 'js/js_quiz.js' %}"></script>
+{% endblock content %}

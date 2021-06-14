@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4">{{user}}'s Quiz Results</h1>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <a href="{% url 'quizes:list' %}" class="btn btn-md btn-primary">Go to Quizes</a>
+            <a href="{% url 'accounts:profile' username=user %}" class="btn btn-md btn-secondary">Back to Profile</a>
+        </div>
+    </div>
+    <br><hr/><br>
+    <div class="row">
+        <div class="col-12">
+            {% for r in results %}
+                <div class="row">
+                    <div class="book-detail">
+                         <div class="book-cover-big">
+                            <img class="quiz-list-image" src="{% static '' %}img/{{r.quiz.lower}}.jpg" />
+                        </div>
+                        <div class="col-6 quiz-results-icon">
+                            <br>
+                            <p><strong>{{r.quiz.upper}}</strong></p>
+                            <p><strong>Result : Correct {{r.result}} / Total {{r.maxpoint}}</strong></p>
+                            <p class="italic">{{r.comment}}</p>
+                            <p>Date : {{r.date}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                    <a href="{% url 'quizes:play' quizname=r.quiz %}" class="btn btn-md btn-primary">Play Quiz Again</a>
+                    <a href="{% url 'quizes:delete_result' id=r.id %}" class="btn btn-md btn-danger">Delete Result</a>
+                    </div>
+                </div>
+                <br><hr/>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
